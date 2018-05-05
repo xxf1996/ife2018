@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css task1</title>
+    <style>
+        p{
+            margin: 0;
+        }
+        .container{
+            width: 400px;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #text{
+            font-size: 20px;
+            padding: 15px 5px;
+            transition: all 0.6s;
+        }
+        .text-change{ /* 文本切换样式 */
+            color: #39f;
+        }
+        .line{
+            display: inline-block;
+            border-bottom: 3px solid #f33;
+            transition: all 0.6s;
+            width: 0;
+        }
+        .line-change{ /* 下划线切换样式 */
+            width: 100px;
+        }
+        .center{
+            text-align: center;
+        }
+        #btn{
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p class="center">
+        <span id="text">前端学院</span>
+    </p>
+    <p class="center">
+        <span class="line"></span>
+    </p>
+    <p class="center">
+        <button id="btn">切换样式</button>
+    </p>
+</div>
+<script>
+    var btn = document.getElementById('btn'); // 切换按钮
+    var line = document.getElementsByClassName('line')[0]; // 下划线
+    var text = document.getElementById('text'); // 文字
+
+    btn.onclick = function (e) {
+        line.classList.toggle('line-change'); // 切换样式
+        text.classList.toggle('text-change');
+    }
+</script>
+</body>
+</html>
