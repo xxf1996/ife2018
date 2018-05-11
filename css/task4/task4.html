@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css task4</title>
+    <style>
+        #card{
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            width: 250px;
+            height: 350px;
+            margin-left: -125px;
+            margin-top: -175px;
+            transform: rotate3d(0, -1, 0, 0deg);
+        }
+        #card>img{
+            position: absolute;
+            transition: all .5s;
+        }
+        #c1{
+            backface-visibility: hidden; /* 设置旋转后背面不可见 */
+        }
+        #card:hover img{
+            transform: rotate3d(0, -1, 0, 180deg);
+        }
+    </style>
+</head>
+<body>
+<div id="card">
+    <img id="c2" src="2.jpg">
+    <img id="c1" src="1.jpg">
+</div>
+</body>
+</html>
