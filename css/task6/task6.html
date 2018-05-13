@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css task6</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        /*
+        slide1到slide5为相应图片切换动画的关键帧变化设置
+         */
+        @keyframes slide1{
+            from{
+                left: -500px;
+            }
+            to{
+                left: 0;
+            }
+        }
+        @keyframes slide2{
+            from{
+                top: 350px;
+            }
+            to{
+                top: 0;
+            }
+        }
+        @keyframes slide3{
+            from{
+                transform: scale(0.1);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
+        @keyframes slide4{
+            from{
+                transform: scale(2);
+            }
+            to{
+                transform: scale(1);
+            }
+        }
+        @keyframes slide5{
+            from{
+                transform: rotate(-360deg) scale(0.1);
+            }
+            to{
+                transform: rotate(0deg) scale(1);
+            }
+        }
+        #small{
+            box-sizing: border-box;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: stretch;
+            padding: 0 30px;
+        }
+        #small>img{
+            margin: 0 15px;
+        }
+        #small>img:hover{
+            cursor: pointer;
+        }
+        #full{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+        #full-img, #back{
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /*
+        使用动画的样式
+         */
+        .a1{
+            animation: slide1 0.5s ease-out;
+        }
+        .a2{
+            animation: slide2 0.5s ease-out;
+        }
+        .a3{
+            animation: slide3 1s ease-in;
+        }
+        .a4{
+            animation: slide4 1s ease-out;
+        }
+        .a5{
+            animation: slide5 0.7s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<section id="full">
+    <img id="back" src="0.jpg">
+    <img id="full-img" src="0.jpg">
+</section>
+
+<section id="small">
+    <img src="1.jpg">
+    <img src="2.jpg">
+    <img src="3.jpg">
+    <img src="4.jpg">
+    <img src="5.jpg">
+</section>
+
+<script>
+    var full = document.getElementById('full');
+    full.style.height = window.innerHeight + 'px';
+    var fullImg = document.getElementById('full-img');
+    var back = document.getElementById('back');
+    var imgs = document.querySelectorAll('#small>img'); // 缩略图列表
+
+    function slide(src, idx) { // 返回相应的点击事件，为每幅图片切换指定的样式
+        return function () {
+            back.src = fullImg.src; // 将前一全屏图片传给内层全屏图片，作为背景
+            fullImg.src = src; // 将当前图片的src传给全屏图片（外层的）
+            fullImg.setAttribute('class', 'a' + idx);
+            return false;
+        }
+    }
+
+    window.onload = function () {
+        imgs.forEach(function (elem, idx) { // 为缩略图列表的图片绑定点击切换事件
+            elem.onclick = slide(elem.src, idx + 1);
+        });
+    };
+</script>
+</body>
+</html>
